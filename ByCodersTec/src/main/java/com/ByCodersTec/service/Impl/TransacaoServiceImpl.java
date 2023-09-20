@@ -62,10 +62,10 @@ public class TransacaoServiceImpl implements TransacaoService {
     }
 
     private TransacaoModel parseLinha(String linha) {
+
         try {
-            if (linha.length() != 80) {
-                return null;
-            }
+
+
             var transacao = new TransacaoModel();
             transacao.setTipo(linha.substring(0, 1));
             transacao.setData(LocalDate.parse(linha.substring(1, 9), DateTimeFormatter.ofPattern("yyyyMMdd")));
@@ -74,7 +74,7 @@ public class TransacaoServiceImpl implements TransacaoService {
             transacao.setCartao(linha.substring(30, 42));
             transacao.setHora(LocalTime.parse(linha.substring(42, 48), DateTimeFormatter.ofPattern("HHmmss")));
             transacao.setDonoDaLoja(linha.substring(48, 62));
-            transacao.setNomeDaLoja(linha.substring(62, 80));
+            transacao.setNomeDaLoja(linha.substring(62, 80).trim());
 
             return transacao;
 
